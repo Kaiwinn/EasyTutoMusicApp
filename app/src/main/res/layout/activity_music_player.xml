@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Title of the song"
-        android:maxLines="1"
+        android:singleLine="true"
         android:textSize="22dp"
         android:ellipsize="marquee"
         android:layout_margin="20dp"
@@ -39,28 +39,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
         <LinearLayout
-            android:gravity="bottom"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_weight="3">
+            android:layout_weight="3"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:textSize="16dp"
-                android:textColor="#2B2A2A"
                 android:gravity="center"
                 android:text="There are no lyrics to this song"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_marginBottom="23dp"
-                android:textSize="16dp"
                 android:textColor="#2B2A2A"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="23dp"
                 android:gravity="center"
                 android:text="..."
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textColor="#2B2A2A"
+                android:textSize="16dp" />
         </LinearLayout>
         <LinearLayout
             android:gravity="bottom"
@@ -78,7 +81,7 @@
                     android:layout_height="60dp"
                     android:layout_alignParentStart="true"
                     android:gravity="center"
-                    android:text="0:00"
+                    android:text="00:00"
                     android:textColor="#FFFFFF"
                     android:textSize="20dp"></TextView>
 

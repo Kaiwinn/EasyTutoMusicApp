@@ -27,10 +27,12 @@ public class MusicPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
         mapping();
+
+        titleTv.setSelected(true);
         // we have got the song list.
         songList = (ArrayList<AudioModel>) getIntent().getSerializableExtra("LIST");
         setResourcesWithMusic();
-        titleTv.setSelected(true);
+
     }
 
     private void mapping() {
@@ -80,7 +82,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
         if(MyMediaPlayer.currentIndex== songList.size()-1){
             return;
         }
-        MyMediaPlayer.currentIndex = + 1;
+        MyMediaPlayer.currentIndex += 1;
         mediaPlayer.reset();
         setResourcesWithMusic();
     }
@@ -89,7 +91,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
         if(MyMediaPlayer.currentIndex== 0){
             return;
         }
-        MyMediaPlayer.currentIndex = - 1;
+        MyMediaPlayer.currentIndex -= 1;
         mediaPlayer.reset();
         setResourcesWithMusic();
     }
