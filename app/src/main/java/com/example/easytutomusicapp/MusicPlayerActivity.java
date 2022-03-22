@@ -33,6 +33,12 @@ public class MusicPlayerActivity extends AppCompatActivity {
         songList = (ArrayList<AudioModel>) getIntent().getSerializableExtra("LIST");
         setResourcesWithMusic();
 
+        MusicPlayerActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
     }
 
     private void mapping() {
@@ -59,6 +65,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
         playMusic();
     }
+
     private void playMusic(){
         mediaPlayer.reset();
         try {
@@ -110,9 +117,9 @@ public class MusicPlayerActivity extends AppCompatActivity {
         // we will convert to minute and seconds.
         return String.format("%02d:%02d",
                 // convert it to minute.
-                TimeUnit.MICROSECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1),
+                TimeUnit.MILLISECONDS.toMinutes(millis) % TimeUnit.HOURS.toMinutes(1),
                 // convert it to seconds
-                TimeUnit.MICROSECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1));
+                TimeUnit.MILLISECONDS.toSeconds(millis) % TimeUnit.MINUTES.toSeconds(1));
     }
 
 }
