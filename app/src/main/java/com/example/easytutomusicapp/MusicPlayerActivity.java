@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -22,6 +23,8 @@ public class MusicPlayerActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer = MyMediaPlayer.getInstance();
     // we can return the media player from there.
 
+    int x = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,38 @@ public class MusicPlayerActivity extends AppCompatActivity {
         MusicPlayerActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                if(mediaPlayer != null){
+                    seekBar.setProgress(mediaPlayer.getCurrentPosition());
+                    currentTimeTv.setText(convertToMMSS(mediaPlayer.getCurrentPosition()+ ""));
+
+                    if(mediaPlayer.isPlaying()){
+                        btn_play.setImageResource(R.drawable.ic_pause);
+                        musicIcon.setRotation(x++);
+                    }else {
+                        btn_play.setImageResource(R.drawable.ic_play);
+                        musicIcon.setRotation(0);
+                    }
+                }
+                new Handler().postDelayed(this, 50);
+            }
+        });
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // when user change the seekbar
+                if(mediaPlayer != null && fromUser){
+                    mediaPlayer.seekTo(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         });
